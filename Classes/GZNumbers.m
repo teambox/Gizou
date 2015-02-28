@@ -25,12 +25,6 @@
     return @(arc4random_uniform(INT32_MAX) + 1);
 }
 
-/* Use at your own risk */
-+ (NSNumber *)randomUniqueID
-{
-    return [self randomIntegerBiggerThan:1000000];
-}
-
 + (NSNumber *)randomIndex:(id)enumerable
 {
     NSUInteger idx = 0;
@@ -53,7 +47,7 @@
     return @(arc4random_uniform(lessThan));
 }
 
-+ (NSNumber *)randomIntegerBiggerThan:(int32_t)startingAt
++ (NSNumber *)randomIntegerStartingAt:(int32_t)startingAt
 {
     return [self randomIntegerBetween:startingAt and:INT32_MAX];
 }

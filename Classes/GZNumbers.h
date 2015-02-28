@@ -11,11 +11,9 @@
 + (NSNumber *)randomBOOL;
 + (NSNumber *)randomInteger;
 + (NSNumber *)randomNonZeroInteger;
-/* Use at your own risk */
-+ (NSNumber *)randomUniqueID;
 + (NSNumber *)randomIndex:(id)enumerable;
 + (NSNumber *)randomIntegerLessThan:(int32_t)lessThan;
-+ (NSNumber *)randomIntegerBiggerThan:(int32_t)startingAt;
++ (NSNumber *)randomIntegerStartingAt:(int32_t)startingAt;
 + (NSNumber *)randomIntegerBetween:(int32_t)min and:(int32_t)max;
 + (NSNumber *)randomFloatBetween:(float)min and:(float)max;
 
