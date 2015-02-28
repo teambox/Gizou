@@ -1,6 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Workspace
    version = "1.0">
+   <Group
+      location = "group:Gizou"
+      name = "Gizou">
+      <Group
+         location = "group:Assets"
+         name = "Assets">
+         <FileRef
+            location = "group:gizou_data_bundle.json">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:CLLocation+GZLocations.h">
+      </FileRef>
+      <FileRef
+         location = "group:CLLocation+GZLocations.m">
+      </FileRef>
+      <FileRef
+         location = "group:Gizou.h">
+      </FileRef>
+      <FileRef
+         location = "group:GizouOptional.h">
+      </FileRef>
+      <FileRef
+         location = "group:GZDataManager.h">
+      </FileRef>
+      <FileRef
+         location = "group:GZDataManager.m">
+      </FileRef>
+      <FileRef
+         location = "group:GZInternet.h">
+      </FileRef>
+      <FileRef
+         location = "group:GZInternet.m">
+      </FileRef>
+      <FileRef
+         location = "group:GZLocations+CoreLocationExtensions.h">
+      </FileRef>
+      <FileRef
+         location = "group:GZLocations+CoreLocationExtensions.m">
+      </FileRef>
+      <FileRef
+         location = "group:GZLocations.h">
+      </FileRef>
+      <FileRef
+         location = "group:GZLocations.m">
+      </FileRef>
+      <FileRef
+         location = "group:GZNames.h">
+      </FileRef>
+      <FileRef
+         location = "group:GZNames.m">
+      </FileRef>
+      <FileRef
+         location = "group:GZNumbers.h">
+      </FileRef>
+      <FileRef
+         location = "group:GZNumbers.m">
+      </FileRef>
+      <FileRef
+         location = "group:GZPhoneNumbers.h">
+      </FileRef>
+      <FileRef
+         location = "group:GZPhoneNumbers.m">
+      </FileRef>
+      <FileRef
+         location = "group:GZWords.h">
+      </FileRef>
+      <FileRef
+         location = "group:GZWords.m">
+      </FileRef>
+      <Group
+         location = "group:ios"
+         name = "ios">
+         <FileRef
+            location = "group:GZColors.h">
+         </FileRef>
+         <FileRef
+            location = "group:GZColors.m">
+         </FileRef>
+         <FileRef
+            location = "group:GZIOSFunctions.h">
+         </FileRef>
+         <FileRef
+            location = "group:GZIOSFunctions.m">
+         </FileRef>
+         <FileRef
+            location = "group:UIImage+GZImages.h">
+         </FileRef>
+         <FileRef
+            location = "group:UIImage+GZImages.m">
+         </FileRef>
+      </Group>
+      <FileRef
+         location = "group:NSString+GZStrings.h">
+      </FileRef>
+      <FileRef
+         location = "group:NSString+GZStrings.m">
+      </FileRef>
+      <Group
+         location = "group:osx"
+         name = "osx">
+         <FileRef
+            location = "group:GZOSXFunctions.h">
+         </FileRef>
+         <FileRef
+            location = "group:GZOSXFunctions.m">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Private"
+         name = "Private">
+         <FileRef
+            location = "group:GZConstants.h">
+         </FileRef>
+         <FileRef
+            location = "group:GZConstants.m">
+         </FileRef>
+         <FileRef
+            location = "group:GZDataManager+GZPrivateDataRequests.h">
+         </FileRef>
+         <FileRef
+            location = "group:GZDataManager+GZPrivateDataRequests.m">
+         </FileRef>
+         <FileRef
+            location = "group:GZUtilityFunctions.h">
+         </FileRef>
+         <FileRef
+            location = "group:GZUtilityFunctions.m">
+         </FileRef>
+      </Group>
+   </Group>
    <FileRef
       location = "group:GizouTests/GizouTests.xcodeproj">
    </FileRef>
