@@ -67,13 +67,8 @@
 + (NSNumber *)randomFloatBetween:(float)min and:(float)max
 {
     float diff = max - min;
-    
-    float r = (
-               (
-                (float) (arc4random_uniform((unsigned)RAND_MAX + 1)) / RAND_MAX
-                ) * diff
-               )
-    + min;
+    unsigned int rInt = arc4random_uniform(INT32_MAX) + 1;
+    float r = ((float) rInt / INT32_MAX * diff) + min;
     
     return @(r);
 }
