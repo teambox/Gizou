@@ -24,3 +24,6 @@ DerivedData
 #
 # Pods/
 /Pods/
+GizouTests/Pods
+GizouTests/Podfile.lock
+GizouTests/GizouTests.xcodeproj/xcshareddata/xcschemes/
