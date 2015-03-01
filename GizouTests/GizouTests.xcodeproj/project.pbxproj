@@ -15,6 +15,8 @@
 		526073FB19072E9B00FA0EA7 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 524E714F190105F9009D0D98 /* XCTest.framework */; };
 		5260740119072E9B00FA0EA7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 526073FF19072E9B00FA0EA7 /* InfoPlist.strings */; };
 		5260743C1907317E00FA0EA7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 526073E019072C3300FA0EA7 /* Cocoa.framework */; };
+		83D5BDC51AA3222800246257 /* GZNumbersSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D5BDC41AA3222800246257 /* GZNumbersSpecs.m */; };
+		83D5BDC61AA3222800246257 /* GZNumbersSpecs.m in Sources */ = {isa = PBXBuildFile; fileRef = 83D5BDC41AA3222800246257 /* GZNumbersSpecs.m */; };
 		83F13D131AA25C16005255BC /* GZCategoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F13D0B1AA25C16005255BC /* GZCategoryTests.m */; };
 		83F13D141AA25C16005255BC /* GZCategoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F13D0B1AA25C16005255BC /* GZCategoryTests.m */; };
 		83F13D151AA25C16005255BC /* GZImagesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F13D0C1AA25C16005255BC /* GZImagesTests.m */; };
@@ -55,6 +57,7 @@
 		526073FE19072E9B00FA0EA7 /* osxtests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "osxtests-Info.plist"; sourceTree = "<group>"; };
 		5260740019072E9B00FA0EA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5260740419072E9B00FA0EA7 /* osxtests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "osxtests-Prefix.pch"; sourceTree = "<group>"; };
+		83D5BDC41AA3222800246257 /* GZNumbersSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZNumbersSpecs.m; sourceTree = "<group>"; };
 		83F13D0B1AA25C16005255BC /* GZCategoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZCategoryTests.m; sourceTree = "<group>"; };
 		83F13D0C1AA25C16005255BC /* GZImagesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZImagesTests.m; sourceTree = "<group>"; };
 		83F13D0D1AA25C16005255BC /* GZInternetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZInternetTests.m; sourceTree = "<group>"; };
@@ -101,6 +104,7 @@
 				83F13D101AA25C16005255BC /* GZPhoneNumbersTests.m */,
 				83F13D111AA25C16005255BC /* GZSetupTests.m */,
 				83F13D121AA25C16005255BC /* GZWordsTests.m */,
+				83D5BDC41AA3222800246257 /* GZNumbersSpecs.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -351,6 +355,7 @@
 				83F13D1B1AA25C16005255BC /* GZNamesTests.m in Sources */,
 				83F13D211AA25C16005255BC /* GZWordsTests.m in Sources */,
 				83F13D1D1AA25C16005255BC /* GZPhoneNumbersTests.m in Sources */,
+				83D5BDC51AA3222800246257 /* GZNumbersSpecs.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +369,7 @@
 				83F13D1E1AA25C16005255BC /* GZPhoneNumbersTests.m in Sources */,
 				83F13D181AA25C16005255BC /* GZInternetTests.m in Sources */,
 				83F13D201AA25C16005255BC /* GZSetupTests.m in Sources */,
+				83D5BDC61AA3222800246257 /* GZNumbersSpecs.m in Sources */,
 				83F13D1C1AA25C16005255BC /* GZNamesTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
