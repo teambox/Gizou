@@ -1,6 +1,4 @@
-#define EXP_SHORTHAND
-#import <Specta/Specta.h>
-#import <Expecta/Expecta.h>
+#import "GZTests.h"
 #import "Gizou.h"
 
 @interface GZNumbersTests : GZNumbers

@@ -58,6 +58,7 @@
 		5260740019072E9B00FA0EA7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5260740419072E9B00FA0EA7 /* osxtests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "osxtests-Prefix.pch"; sourceTree = "<group>"; };
 		83D5BDC41AA3222800246257 /* GZNumbersSpecs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZNumbersSpecs.m; sourceTree = "<group>"; };
+		83D5BDC71AA323ED00246257 /* GZTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GZTests.h; sourceTree = "<group>"; };
 		83F13D0B1AA25C16005255BC /* GZCategoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZCategoryTests.m; sourceTree = "<group>"; };
 		83F13D0C1AA25C16005255BC /* GZImagesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZImagesTests.m; sourceTree = "<group>"; };
 		83F13D0D1AA25C16005255BC /* GZInternetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZInternetTests.m; sourceTree = "<group>"; };
@@ -105,6 +106,7 @@
 				83F13D111AA25C16005255BC /* GZSetupTests.m */,
 				83F13D121AA25C16005255BC /* GZWordsTests.m */,
 				83D5BDC41AA3222800246257 /* GZNumbersSpecs.m */,
+				83D5BDC71AA323ED00246257 /* GZTests.h */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
