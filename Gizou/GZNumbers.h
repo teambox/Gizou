@@ -23,12 +23,14 @@
 @interface GZNumbers (Booleans)
 
 /**
+ *  Any boolean number.
  *
  *  @return YES, NO
  */
 + (NSNumber *)yesOrNo;
 
 /**
+ *  Any boolean number, but most of the times `m` value. 
  *
  *  @param m Predominant bool value
  *
@@ -44,105 +46,176 @@
 /**
  *  Any natural number including 0 (ie. unsigned integers).
  *
- *  @return 0, 1, 2,...,INT32_MAX-1
+ *  @return 0,1,2,...,INT32_MAX-1
  */
 + (NSNumber *)integerN;
 
 /**
  *  Any natural number excluding 0.
  *
- *  @return 1, 2,..., INT32_MAX
+ *  @return 1,2,...,INT32_MAX
  */
 + (NSNumber *)integerNNonZero;
 
 /**
  *  Any natural number from 0 to MAX.
- *  This method just invokes `integerNBetween:0 and:MAX`.
+ *  This method just invokes `integerBetween:0 and:MAX`.
  *
  *  @param max Maximum desired value that may be generated.
  *
- *  @return 0, 1,..., MAX
+ *  @return 0,1,...,MAX
  *
- *  @see `integerNBetween:and:`
+ *  @see `integerBetween:and:`
  */
 + (NSNumber *)integerNLessOrEqual:(u_int32_t)max;
-
-/**
- *  Any natural number from MIN to INT32_MAX.
- *  This method just invokes `integerNBetween:MIN and:INT32_MAX`.
- *
- *  @param min Minimum desired value that may be generated.
- *
- *  @return MIN, MIN+1, MIN+2,..., INT32_MAX
- *
- *  @see `integerNBetween:and:`
- */
-+ (NSNumber *)integerNBiggerOrEqual:(u_int32_t)min;
-
-/**
- *  Any natural number from MIN to MAX.
- *
- *  @param min Minimum desired value that may be generated.
- *  @param max Maximum desired value that may be generated.
- *
- *  @return MIN, MIN+1, MIN+2,..., MAX
- *
- *  @discussion MIN and MAX must be unsigned integers less than INT32_MAX. If not, INT32_MAX will be used for that parameter.
- */
-+ (NSNumber *)integerNBetween:(u_int32_t)min and:(u_int32_t)max; //min,..max
-
-
-///--------------------------------
-//  @name Asymmetric natural numbers
-///--------------------------------
-
-/**
- *  Any natural number from MIN to MAX with predominant value MANY and/or scarce value FEW if provided. Both MANY and FEW are optional parameters.
- *
- *  @param min Minimum desired value that may be generated.
- *  @param max Maximum desired value that may be generated.
- *  @param m   Number with the desired integer to be predominant.
- *  @param f   Number with the desired integer to be scarce.
- *
- *  @return MIN, MIN+1, MIN+2,..., MAX with `MANY` value ca 70% of the times and FEW less than 10% of the times aprox, depending on the range.
- *
- *  @discussion Same integer limits apply as in `integerNBetween:and`
- *
- *  @see `integerNBetween:and:`
- */
-+ (NSNumber *)integerNBetween:(u_int32_t)min and:(u_int32_t)max many:(NSNumber *)m few:(NSNumber *)f;
 
 @end
 
 
 @interface GZNumbers (ZNumbers)
 
-+ (NSNumber *)integerZ; // all integers: ..,-2, -1, 0, 1, 2,...
-+ (NSNumber *)integerZNonZero; // .., -2, -1, 1, 2,...
-+ (NSNumber *)integerZEndingAt:(int32_t)max; // .., -2, -1, 0, 1,...,n
-+ (NSNumber *)integerZStartingAt:(int32_t)min; // n, n+1,...
-+ (NSNumber *)integerZBetween:(int32_t)min and:(int32_t)max; // min,..,max
+/**
+ *  Any integer number negative, positive or 0.
+ *  This method just invokes `integerBetween:-INT32_MAX and:INT32_MAX`.
+ *  Limit in range is INT32_MAX on both sides +-.
+ *
+ *  @return ..,-2,-1,0,1,2,...
+ *
+ *  @see `integerBetween:and:`
+ */
++ (NSNumber *)integerZ;
 
-+ (NSNumber *)negativeInteger; // all negative integers: ..,-2, -1, 0
-+ (NSNumber *)negativeIntegerNonZero; // .., -2, -1
+/**
+ *  Any integer number excluding 0.
+ *
+ *  @return ..,-2,-1,1,2,...
+ */
++ (NSNumber *)integerZNonZero;
 
-+ (NSNumber *)integerZBetween:(int32_t)min and:(int32_t)max many:(NSNumber *)m few:(NSNumber *)f;
+/**
+ *  Any integer number from -INT32_MAX to MAX.
+ *  This method just invokes `integerBetween:-INT32_MAX and:MAX`.
+ *
+ *  @param max Maximum desired value that may be generated.
+ *
+ *  @return ...,-2,-1,0,1,...,MAX
+ *
+ *  @see `integerBetween:and:`
+ */
++ (NSNumber *)integerZLessOrEqual:(NSInteger)max;
 
-@end
+/**
+ *  Any integer number from MIN to INT32_MAX.
+ *  This method just invokes `integerBetween:MIN and:INT32_MAX`.
+ *
+ *  @param min Minimum desired value that may be generated.
+ *
+ *  @return MIN,MIN+1,MIN+2,...,INT32_MAX
+ *
+ *  @see `integerBetween:and:`
+ */
++ (NSNumber *)integerBiggerOrEqual:(NSInteger)min;
+
+/**
+ *  Any integer number from MIN to MAX. If MIN is bigger than MAX, it returns numbers in the range MAX, MAX+1,...,MIN.
+ *
+ *  @param min Minimum desired value that may be generated.
+ *  @param max Maximum desired value that may be generated.
+ *
+ *  @return MIN,MIN+1,MIN+2,...,MAX
+ *
+ *  @discussion MIN and MAX must be integers with absolute value less than INT32_MAX. If not, values can be overflown and lead to unexpected results.
+ *  If MIN is bigger than MAX, it returns numbers in the range MAX, MAX+1,..., MIN.
+ */
++ (NSNumber *)integerBetween:(NSInteger)min and:(NSInteger)max;
+
+/**
+ *  Any negative integer number or 0.
+ *  This method just invokes `integerBetween:INT32_MAX and:0`.
+ *
+ *  @return ...,-2,-1,0
+ *
+ *  @see `integerBetween:and:`
+ */
++ (NSNumber *)negativeInteger;
+
+/**
+ *  Any negative integer excluding 0.
+ *  This method just invokes `integerBetween:INT32_MAX and:-1`.
+ *
+ *  @return ...,-2,-1
+ *
+ *  @see `integerBetween:and:`
+ */
++ (NSNumber *)negativeIntegerNonZero;
 
 
-@interface GZNumbers (DecimalNumbers)
+///--------------------------------
+//  @name Asymmetric integer numbers
+///--------------------------------
 
-+ (NSNumber *)randomFloatBetween:(float)min and:(float)max;
+/**
+ *  Any integer number from MIN to MAX with predominant value MANY and/or scarce value FEW if provided. Both MANY and FEW are optional parameters and if specified have to be in the [MIN, MAX] range. If specifing both, they must be different.
+ *
+ *  @param min Minimum desired value that may be generated.
+ *  @param max Maximum desired value that may be generated.
+ *  @param m   Number with the desired integer to be predominant. Can be nil. If not nil, must be in the range [MIN, MAX].
+ *  @param f   Number with the desired integer to be scarce. Can be nil. If not nil, must be in the range [MIN, MAX].
+ *
+ *  @return MIN,MIN+1,MIN+2,...,MAX with `MANY` value returning with high probability and FEW with low probability (exact distribution varies depending on the range).
+ *
+ *  @discussion Same integer limits apply as in `integerBetween:and`
+ *
+ *  @see `integerBetween:and:`
+ *
+ *  @discussion Throws `NSInternalInconsistencyException` if either MANY or FEW are out of the range bounds.
+ */
++ (NSNumber *)integerBetween:(NSInteger)min and:(NSInteger)max many:(NSNumber *)m few:(NSNumber *)f;
 
 @end
 
 
 @interface GZNumbers (Indexes)
 
+/**
+ *  Any index of the specified collection or data object.
+ *  Throws `NSInternalInconsistencyException` if the object cannot be count or has no length.
+ *
+ *  @param enumerableObj Object that responds to count or lenght selectors.
+ *
+ *  @return 0,1,...,count-1 (length-1)
+ */
 + (NSNumber *)indexFrom:(id)enumerableObj;
+
+/**
+ *  Any index of the specified collection or data object with predominant value MANY and/or scarce value FEW. Both MANY and FEW are optional parameters and must be inside the enumberable indexes bounds. If specifing both, they must be different.
+ *
+ *  @param enumerableObj Object that responds to count or lenght selectors.
+ *  @param m             Number with the desired integer to be predominant. Can be nil. If not nil, must be in the range [MIN, MAX].
+ *  @param f             Number with the desired integer to be scarce. Can be nil. If not nil, must be in the range [MIN, MAX].
+ *
+ *  @return 0,1,...,count-1 (length-1) with `MANY` value returning with high probability and FEW with low probability (exact distribution varies depending on the range).
+ *
+ *  @discussion Throws `NSInternalInconsistencyException` if either MANY or FEW are out of the range bounds.
+ */
 + (NSNumber *)indexFrom:(id)enumerableObj many:(NSNumber *)m few:(NSNumber *)f;
 
 @end
+
+
+@interface GZNumbers (DecimalNumbers)
+
+/**
+ *  Any float number from MIN to MAX.
+ *
+ *  @param min Minimum desired value that may be generated.
+ *  @param max Maximum desired value that may be generated.
+ *
+ *  @return decimal number ∈[MIN, MAX] or [MAX, MIN] if MIN is bigger than MAX. 
+ */
++ (NSNumber *)floatBetween:(float)min and:(float)max;
+
+@end
+
 
 

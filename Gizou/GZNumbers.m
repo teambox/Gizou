@@ -78,12 +78,23 @@
     return ![self returnFewValue];
 }
 
-// Asymmetry tending to 85% NOs vs 15% YESs
 + (BOOL)returnFewValue
 {
     u_int32_t r10 = arc4random_uniform(10) + 1; // In [1, 10]
     if ((r10 % 3) == 0) {
-        return YES; // Only 15% of the times (propability)
+        return YES;
+    }
+    return NO;
+}
+
++ (BOOL)isInteger:(int32_t)x InRange:(int32_t)a and:(int32_t)b
+{
+    NSInteger diff = (NSInteger)b - (NSInteger)a;
+    if ((diff >= 0) && (x >= a && x <= b)) {
+        return YES;
+    }
+    if (diff < 0 && (x >= b && x <= a)) {
+        return YES;
     }
     return NO;
 }
@@ -125,49 +136,91 @@
 
 + (NSNumber *)integerNLessOrEqual:(u_int32_t)max
 {
-    return [self integerNBetween:0 and:max];
+    return [self integerBetween:0 and:max];
 }
 
-+ (NSNumber *)integerNBiggerOrEqual:(u_int32_t)min
+@end
+
+
+@implementation GZNumbers (ZNumbers)
+
++ (NSNumber *)integerZ
 {
-    return [self integerNBetween:min and:kINTMAX];
+    return [self integerBetween:-kINTMAX and:kINTMAX];
 }
 
-+ (NSNumber *)integerNBetween:(u_int32_t)min and:(u_int32_t)max
++ (NSNumber *)integerZNonZero
 {
-    NSInteger diff = (NSInteger)max - (NSInteger)min;
+    int randPos = [self integerNNonZero].intValue;
+    BOOL randBool = [self randomBOOL].boolValue;
+    return randBool ? @(randPos) : @(-randPos);
+}
+
++ (NSNumber *)integerZLessOrEqual:(NSInteger)max
+{
+    return [self integerBetween:-kINTMAX and:max];
+}
+
++ (NSNumber *)integerBiggerOrEqual:(NSInteger)min
+{
+    return [self integerBetween:min and:kINTMAX];
+}
+
++ (NSNumber *)integerBetween:(NSInteger)min and:(NSInteger)max
+{
+    NSInteger diff = max - min;
     if (diff < 0) {
         diff = -diff;
-        u_int32_t newMin = max;
-        u_int32_t newMax = min;
+        NSInteger newMin = max;
+        NSInteger newMax = min;
         min = newMin;
         max = newMax;
     }
-    // Make sure number is never over INT32 limit in case it is used for sqlite, for eg.
-    if (min >= INT32_MAX) {
-        min = INT32_MAX;
+
+    if (max > 0 && (min + max < min) ||
+        max < 0 && (min + max > min)) {
+        // Overflown
+        NSLog(@"[! GZNumbers] WARNING. Range specified in integerZBetween:and: may have overflown int32 values");
     }
-    if (max >= INT32_MAX) {
-        max = INT32_MAX;
-    }
+
     if (diff == 0) {
         return @(max);
     }
-    u_int32_t rndInRange = min + arc4random_uniform((u_int32_t)diff + 1);
+    int32_t rndInRange = (int32_t)min + (int32_t)arc4random_uniform((u_int32_t)diff + 1);
     return @(rndInRange);
 }
 
-
-#pragma mark - Asymmetric
-
-+ (NSNumber *)integerNBetween:(u_int32_t)min
-                          and:(u_int32_t)max
-                         many:(NSNumber *)m
-                          few:(NSNumber *)f
++ (NSNumber *)negativeInteger
 {
-    NSNumber *random = [self integerNBetween:min and:max];
+    return [self integerBetween:-kINTMAX and:0];
+}
+
++ (NSNumber *)negativeIntegerNonZero
+{
+    return [self integerBetween:-kINTMAX and:-1];
+}
+
+
+#pragma mark Asymmetric
+
++ (NSNumber *)integerBetween:(NSInteger)min
+                         and:(NSInteger)max
+                        many:(NSNumber *)m
+                         few:(NSNumber *)f
+{
+    NSNumber *random = [self integerBetween:min and:max];
     if (!m && !f) {
         return random;
+    }
+    if (m && ![self isInteger:m.integerValue InRange:min and:max]) {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:@"Cannot set 'many' value out of range."
+                                     userInfo:nil];
+    }
+    if (f && ![self isInteger:f.integerValue InRange:min and:max]) {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:@"Cannot set 'few' value out of range."
+                                     userInfo:nil];
     }
     
     if (m && m.integerValue != random.integerValue) {
@@ -177,7 +230,7 @@
     }
     if (f && f.integerValue == random.integerValue) {
         if (![self returnFewValue]) {
-            return [self integerNBetween:min and:max many:nil few:f];
+            return [self integerBetween:min and:max many:nil few:f];
         }
     }
     return random;
@@ -185,3 +238,53 @@
 
 @end
 
+
+@implementation GZNumbers (DecimalNumbers)
+
++ (NSNumber *)floatBetween:(float)min and:(float)max
+{
+    float diff = max - min;
+    if (diff == 0) {
+        return @(max);
+    }
+    u_int32_t rInt = arc4random_uniform(kINTMAX) + 1;
+    float rndInRange = min + ((float) rInt / kINTMAX * diff);
+    
+    return @(rndInRange);
+}
+
+@end
+
+
+@implementation GZNumbers (Indexes)
+
++ (NSNumber *)indexFrom:(id)enumerableObj
+{
+    NSUInteger count = [self objectCountOrThrow:enumerableObj];
+    return [self integerBetween:0 and:count - 1];
+}
+
++ (NSNumber *)indexFrom:(id)enumerableObj many:(NSNumber *)m few:(NSNumber *)f
+{
+    NSUInteger count = [self objectCountOrThrow:enumerableObj];
+    return [self integerBetween:0 and:count - 1 many:m few:f];
+}
+
+
+#pragma mark Helpers
+
++ (NSUInteger)objectCountOrThrow:(id)obj
+{
+    BOOL hasCount = [obj respondsToSelector:@selector(count)] ;
+    BOOL hasLength = [obj respondsToSelector:@selector(length)];
+    if (!hasCount && !hasLength) {
+        @throw [NSException exceptionWithName:NSInternalInconsistencyException
+                                       reason:@"Tried to use `indexFrom:` on a object with no count or length selectors"
+                                     userInfo:nil];
+    }
+    
+    NSUInteger count = hasCount ? [obj count] : [obj length];
+    return count;
+}
+
+@end
