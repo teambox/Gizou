@@ -61,7 +61,7 @@
 + (NSCountedSet *)test_numbersSetOfSize:(NSUInteger)size using:(NSNumber *(^)(void))block
 {
     NSMutableArray *randomNumbers = [NSMutableArray array];
-    for (int i = 0; i < size; i++) {
+    for (NSUInteger i = 0; i < size; i++) {
         NSNumber *n = block();
         [randomNumbers addObject:n];
     }
@@ -74,9 +74,9 @@
 SpecBegin(GZNumbersBooleans)
 
 describe(@"+yesOrNo (random bool)", ^{
-    __block int total;
+    __block NSUInteger total;
     __block NSCountedSet *differentBools;
-    beforeEach(^{
+    beforeAll(^{
         total = 10000;
         differentBools = [GZNumbersTests test_numbersSetOfSize:total using:^NSNumber *{
             return [GZNumbers yesOrNo];
@@ -96,10 +96,10 @@ describe(@"+yesOrNo (random bool)", ^{
 
 context(@"asymmetric random bools", ^{
     describe(@"+yesOrNoMostly:", ^{
-        __block int total;
+        __block NSUInteger total;
         __block BOOL predominant;
         __block NSCountedSet *differentBools;
-        beforeEach(^{
+        beforeAll(^{
             total = 10000;
             predominant = YES;
             differentBools = [GZNumbersTests test_numbersSetOfSize:total using:^NSNumber *{
@@ -128,9 +128,9 @@ SpecEnd
 SpecBegin(GZNumbersNaturals)
 
 describe(@"+integerN", ^{
-    __block int total;
+    __block NSUInteger total;
     __block NSCountedSet *differentInts;
-    beforeEach(^{
+    beforeAll(^{
         total = 1000;
         differentInts = [GZNumbersTests test_numbersSetOfSize:total using:^NSNumber *{
             return [GZNumbers integerN];
@@ -145,14 +145,14 @@ describe(@"+integerN", ^{
         expect(decimalsSet).to.haveCountOf(0);
     });
     it(@"returns different values", ^{
-        expect(differentInts.count).to.beGreaterThan(0.7*total);
+        expect(differentInts.count).to.beGreaterThan(0.99*total);
     });
 });
 
 describe(@"+integerNNonZero", ^{
-    __block int total;
+    __block NSUInteger total;
     __block NSCountedSet *differentInts;
-    beforeEach(^{
+    beforeAll(^{
         total = 1000;
         differentInts = [GZNumbersTests test_numbersSetOfSize:total using:^NSNumber *{
             return [GZNumbersTests test_integerNNonZero];
@@ -175,7 +175,7 @@ SpecBegin(GZNumbersZIntegers)
 describe(@"+integerZNonZero", ^{
     __block int total;
     __block NSCountedSet *differentInts;
-    beforeEach(^{
+    beforeAll(^{
         total = 1000;
         differentInts = [GZNumbersTests test_numbersSetOfSize:total using:^NSNumber *{
             return [GZNumbersTests test_integerZNonZero];
@@ -193,7 +193,7 @@ describe(@"+integerZNonZero", ^{
 describe(@"+integerBetween:and:", ^{
     __block NSInteger min;
     __block NSInteger max;
-    __block int total;
+    __block NSUInteger total;
     __block NSCountedSet *differentInts;
     
     beforeAll(^{
@@ -202,7 +202,7 @@ describe(@"+integerBetween:and:", ^{
     
     context(@"when min equals max", ^{
         context(@"when max is INT MAX", ^{
-            beforeEach(^{
+            beforeAll(^{
                 min = INT32_MAX;
                 max = INT32_MAX;
                 differentInts = [GZNumbersTests test_numbersSetOfSize:10 using:^NSNumber *{
@@ -217,7 +217,7 @@ describe(@"+integerBetween:and:", ^{
         });
         
         context(@"when max is any integer", ^{
-            beforeEach(^{
+            beforeAll(^{
                 min = 50;
                 max = 50;
                 differentInts = [GZNumbersTests test_numbersSetOfSize:10 using:^NSNumber *{
@@ -234,7 +234,7 @@ describe(@"+integerBetween:and:", ^{
     
     context(@"when min different from max", ^{
         context(@"and min lt max", ^{
-            beforeEach(^{
+            beforeAll(^{
                 min = -1;
                 max = 1;
                 differentInts = [GZNumbersTests test_numbersSetOfSize:total using:^NSNumber *{
@@ -257,7 +257,7 @@ describe(@"+integerBetween:and:", ^{
         });
         
         context(@"when min gt max", ^{
-            beforeEach(^{
+            beforeAll(^{
                 min = -5;
                 max = -7;
                 differentInts = [GZNumbersTests test_numbersSetOfSize:total using:^NSNumber *{
@@ -287,7 +287,7 @@ context(@"asymmetric random integers", ^{
         __block NSInteger max;
         __block NSNumber *m;
         __block NSNumber *f;
-        __block int total;
+        __block NSUInteger total;
         __block NSCountedSet *differentInts;
         beforeAll(^{
             min = 0;
@@ -295,7 +295,7 @@ context(@"asymmetric random integers", ^{
         });
         
         context(@"when no many, no few", ^{
-            beforeEach(^{
+            beforeAll(^{
                 total = 1000;
                 m = nil;
                 f = nil;
@@ -329,7 +329,7 @@ context(@"asymmetric random integers", ^{
             });
             
             context(@"when many is in range min-max", ^{
-                beforeEach(^{
+                beforeAll(^{
                     total = 10000;
                     m = @1;
                     f = nil;
@@ -366,7 +366,7 @@ context(@"asymmetric random integers", ^{
             });
             
             context(@"when few is in range min-max", ^{
-                beforeEach(^{
+                beforeAll(^{
                     total = 10000;
                     m = nil;
                     f = @1;
@@ -396,7 +396,7 @@ context(@"asymmetric random integers", ^{
         });
         
         context(@"when passing both many and few", ^{
-            beforeEach(^{
+            beforeAll(^{
                 total = 10000;
                 m = @1;
                 f = @0;
@@ -436,7 +436,7 @@ SpecBegin(GZNumbersDecimals)
 describe(@"+floatBetween:and:", ^{
     __block float min;
     __block float max;
-    __block int total;
+    __block NSUInteger total;
     __block NSCountedSet *differentFloats;
     
     beforeAll(^{
@@ -445,7 +445,7 @@ describe(@"+floatBetween:and:", ^{
     
     context(@"min equals max", ^{
         context(@"max is FLOAT MAX", ^{
-            beforeEach(^{
+            beforeAll(^{
                 min = MAXFLOAT;
                 max = MAXFLOAT;
                 differentFloats = [GZNumbersTests test_numbersSetOfSize:10 using:^NSNumber *{
@@ -460,7 +460,7 @@ describe(@"+floatBetween:and:", ^{
         });
         
         context(@"when max is any float", ^{
-            beforeEach(^{
+            beforeAll(^{
                 min = 51.53332;
                 max = 51.53332;
                 differentFloats = [GZNumbersTests test_numbersSetOfSize:10 using:^NSNumber *{
@@ -478,7 +478,7 @@ describe(@"+floatBetween:and:", ^{
     context(@"min different from max", ^{
         context(@"when min lt max", ^{
             context(@"when min is 0", ^{
-                beforeEach(^{
+                beforeAll(^{
                     min = 0;
                     max = 2.3124;
                     differentFloats = [GZNumbersTests test_numbersSetOfSize:total using:^NSNumber *{
@@ -494,20 +494,20 @@ describe(@"+floatBetween:and:", ^{
                     expect(decimalsSet).to.haveCountOf(total);
                 });
                 it(@"returns different values", ^{
-                    expect(differentFloats.count).to.beGreaterThan(0.95*total);
+                    expect(differentFloats.count).to.beGreaterThan(0.99*total);
                 });
                 it(@"returns numbers equal or bigger than min", ^{
                     NSSet *minOrBigger = [differentFloats filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"floatValue >= %@", @(min)]];
-                    expect(minOrBigger).to.haveCountOf(total);
+                    expect(minOrBigger).to.haveCountOf(differentFloats.count);
                 });
                 it(@"returns numbers equal or less than max", ^{
                     NSSet *maxOrSmaller = [differentFloats filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"floatValue <= %@", @(max)]];
-                    expect(maxOrSmaller).to.haveCountOf(total);
+                    expect(maxOrSmaller).to.haveCountOf(differentFloats.count);
                 });
             });
             
             context(@"when min non 0", ^{
-                beforeEach(^{
+                beforeAll(^{
                     min = -1;
                     max = 1;
                     differentFloats = [GZNumbersTests test_numbersSetOfSize:total using:^NSNumber *{
@@ -523,21 +523,21 @@ describe(@"+floatBetween:and:", ^{
                     expect(decimalsSet).to.haveCountOf(total);
                 });
                 it(@"returns different values", ^{
-                    expect(differentFloats.count).to.beGreaterThan(0.95*total);
+                    expect(differentFloats.count).to.beGreaterThan(0.99*total);
                 });
                 it(@"returns numbers equal or bigger than min", ^{
                     NSSet *minOrBigger = [differentFloats filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"floatValue >= %@", @(min)]];
-                    expect(minOrBigger).to.haveCountOf(total);
+                    expect(minOrBigger).to.haveCountOf(differentFloats.count);
                 });
                 it(@"returns numbers equal or less than max", ^{
                     NSSet *maxOrSmaller = [differentFloats filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"floatValue <= %@", @(max)]];
-                    expect(maxOrSmaller).to.haveCountOf(total);
+                    expect(maxOrSmaller).to.haveCountOf(differentFloats.count);
                 });
             });
         });
         
         context(@"when min gt max", ^{
-            beforeEach(^{
+            beforeAll(^{
                 min = -1;
                 max = -7;
                 differentFloats = [GZNumbersTests test_numbersSetOfSize:total using:^NSNumber *{
@@ -553,15 +553,15 @@ describe(@"+floatBetween:and:", ^{
                 expect(decimalsSet).to.haveCountOf(total);
             });
             it(@"returns different values", ^{
-                expect(differentFloats.count).to.beGreaterThan(0.95*total);
+                expect(differentFloats.count).to.beGreaterThan(0.99*total);
             });
             it(@"returns numbers equal or bigger than MAX", ^{
                 NSSet *minOrBigger = [differentFloats filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"floatValue >= %@", @(max)]];
-                expect(minOrBigger).to.haveCountOf(total);
+                expect(minOrBigger).to.haveCountOf(differentFloats.count);
             });
             it(@"returns numbers equal or less than MIN", ^{
                 NSSet *maxOrSmaller = [differentFloats filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"floatValue <= %@", @(min)]];
-                expect(maxOrSmaller).to.haveCountOf(total);
+                expect(maxOrSmaller).to.haveCountOf(differentFloats.count);
             });
         });
     });
@@ -592,7 +592,7 @@ describe(@"+indexFrom:", ^{
     context(@"for an object that can be count", ^{
         __block NSArray *collectionObj;
         __block NSCountedSet *differentIndexes;
-        beforeEach(^{
+        beforeAll(^{
             collectionObj = @[@100, @300, @300];
             differentIndexes = [GZNumbersTests test_numbersSetOfSize:total using:^NSNumber *{
                 return [GZNumbers indexFrom:collectionObj];
@@ -616,7 +616,7 @@ describe(@"+indexFrom:", ^{
     context(@"for an object that has a length", ^{
         __block NSString *dataObj;
         __block NSCountedSet *differentIndexes;
-        beforeEach(^{
+        beforeAll(^{
             dataObj = @"Ola";
             differentIndexes = [GZNumbersTests test_numbersSetOfSize:total using:^NSNumber *{
                 return [GZNumbers indexFrom:dataObj];
@@ -643,14 +643,14 @@ context(@"asymmetric random indexes", ^{
         __block NSArray *enumerableObj;
         __block NSNumber *m;
         __block NSNumber *f;
-        __block int total;
+        __block NSUInteger total;
         __block NSCountedSet *differentIdexes;
         beforeAll(^{
             enumerableObj = @[@"Hola", @"Hello", @"Ciao"];
         });
         
         context(@"when no many, no few", ^{
-            beforeEach(^{
+            beforeAll(^{
                 total = 1000;
                 m = nil;
                 f = nil;
@@ -682,7 +682,7 @@ context(@"asymmetric random indexes", ^{
             });
             
             context(@"when many is in range 0, count-1", ^{
-                beforeEach(^{
+                beforeAll(^{
                     total = 10000;
                     m = @1;
                     f = nil;
@@ -717,7 +717,7 @@ context(@"asymmetric random indexes", ^{
             });
             
             context(@"when few is in range 0, count-1", ^{
-                beforeEach(^{
+                beforeAll(^{
                     total = 10000;
                     m = nil;
                     f = @1;
@@ -745,7 +745,7 @@ context(@"asymmetric random indexes", ^{
         });
         
         context(@"when passing both many and few", ^{
-            beforeEach(^{
+            beforeAll(^{
                 total = 10000;
                 m = @1;
                 f = @0;
