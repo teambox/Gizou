@@ -32,6 +32,8 @@
 		83F13D201AA25C16005255BC /* GZSetupTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F13D111AA25C16005255BC /* GZSetupTests.m */; };
 		83F13D211AA25C16005255BC /* GZWordsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F13D121AA25C16005255BC /* GZWordsTests.m */; };
 		83F13D221AA25C16005255BC /* GZWordsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F13D121AA25C16005255BC /* GZWordsTests.m */; };
+		83F1D5861AA7CED500E4DCC5 /* GZDatesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F1D5851AA7CED400E4DCC5 /* GZDatesSpec.m */; };
+		83F1D5871AA7CED500E4DCC5 /* GZDatesSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F1D5851AA7CED400E4DCC5 /* GZDatesSpec.m */; };
 		A19BA60E5231F659A10A26CF /* libPods-osx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39346B830525909897521E91 /* libPods-osx.a */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +69,7 @@
 		83F13D101AA25C16005255BC /* GZPhoneNumbersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZPhoneNumbersTests.m; sourceTree = "<group>"; };
 		83F13D111AA25C16005255BC /* GZSetupTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZSetupTests.m; sourceTree = "<group>"; };
 		83F13D121AA25C16005255BC /* GZWordsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZWordsTests.m; sourceTree = "<group>"; };
+		83F1D5851AA7CED400E4DCC5 /* GZDatesSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GZDatesSpec.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +100,7 @@
 		52013C051906DF2900193836 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				83D5BDC71AA323ED00246257 /* GZTests.h */,
 				83F13D0B1AA25C16005255BC /* GZCategoryTests.m */,
 				83F13D0C1AA25C16005255BC /* GZImagesTests.m */,
 				83F13D0D1AA25C16005255BC /* GZInternetTests.m */,
@@ -106,7 +110,7 @@
 				83F13D111AA25C16005255BC /* GZSetupTests.m */,
 				83F13D121AA25C16005255BC /* GZWordsTests.m */,
 				83D5BDC41AA3222800246257 /* GZNumbersSpecs.m */,
-				83D5BDC71AA323ED00246257 /* GZTests.h */,
+				83F1D5851AA7CED400E4DCC5 /* GZDatesSpec.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -349,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83F1D5861AA7CED500E4DCC5 /* GZDatesSpec.m in Sources */,
 				83F13D1F1AA25C16005255BC /* GZSetupTests.m in Sources */,
 				83F13D131AA25C16005255BC /* GZCategoryTests.m in Sources */,
 				83F13D191AA25C16005255BC /* GZLocationsTests.m in Sources */,
@@ -373,6 +378,7 @@
 				83F13D201AA25C16005255BC /* GZSetupTests.m in Sources */,
 				83D5BDC61AA3222800246257 /* GZNumbersSpecs.m in Sources */,
 				83F13D1C1AA25C16005255BC /* GZNamesTests.m in Sources */,
+				83F1D5871AA7CED500E4DCC5 /* GZDatesSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

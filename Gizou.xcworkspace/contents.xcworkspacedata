@@ -54,12 +54,6 @@
          location = "group:GZNames.m">
       </FileRef>
       <FileRef
-         location = "group:GZNumbers.h">
-      </FileRef>
-      <FileRef
-         location = "group:GZNumbers.m">
-      </FileRef>
-      <FileRef
          location = "group:GZPhoneNumbers.h">
       </FileRef>
       <FileRef
@@ -70,6 +64,18 @@
       </FileRef>
       <FileRef
          location = "group:GZWords.m">
+      </FileRef>
+      <FileRef
+         location = "group:GZNumbers.h">
+      </FileRef>
+      <FileRef
+         location = "group:GZNumbers.m">
+      </FileRef>
+      <FileRef
+         location = "group:GZDates.h">
+      </FileRef>
+      <FileRef
+         location = "group:GZDates.m">
       </FileRef>
       <Group
          location = "group:ios"
