@@ -86,42 +86,82 @@ describe(@"+dateBetween:from and:to", ^{
     });
 });
 
-describe(@"+daysForward", ^{
+describe(@"days:+-3 from:now", ^{
     __block NSUInteger total;
+    __block NSCalendar *calendar;
+    __block NSCalendarUnit calendarUnits;
+    __block NSDate *referenceDate;
     __block NSCountedSet *differentDates;
-    __block NSSet *differentDays;
-    __block NSDateComponents *todayComps;
+    __block NSCountedSet *differentDays;
+    __block NSDateComponents *referenceDateComps;
     beforeAll(^{
         total = 100;
-        NSCalendar *calendar = [GZDatesTests _calendar];
-        NSCalendarUnit calendarUnits = (NSDayCalendarUnit);
-        NSArray *randomDates = [GZDatesTests test_datesArrayOfSize:total using:^NSDate *{
-            return [GZDatesTests daysForward:3];
-        }];
-        differentDates = [[NSCountedSet alloc] initWithArray:randomDates];
-        differentDays = [GZDatesTests test_dateComponentsWithDates:randomDates calendar:calendar units:calendarUnits];
-        todayComps = [calendar components:calendarUnits fromDate:[GZDatesTests _todayTest]];
+        calendar = [GZDatesTests _calendar];
+        calendarUnits = (NSDayCalendarUnit);
+        referenceDate = [GZDatesTests _todayTest];
+        referenceDateComps = [calendar components:calendarUnits fromDate:referenceDate];
     });
     
-    it(@"returns different dates", ^{
-        expect(differentDates.count).to.beGreaterThan(0.99*total);
+    context(@"when days is positive", ^{
+        beforeAll(^{
+            NSArray *randomDates = [GZDatesTests test_datesArrayOfSize:total using:^NSDate *{
+                return [GZDatesTests days:3 from:referenceDate];
+            }];
+            
+            differentDates = [[NSCountedSet alloc] initWithArray:randomDates];
+            differentDays = [GZDatesTests test_dateComponentsWithDates:randomDates calendar:calendar units:calendarUnits];
+        });
+        
+        it(@"returns different values", ^{
+            expect(differentDates.count).to.beGreaterThan(0.99*total);
+        });
+        it(@"returns three different days dates", ^{
+            expect(differentDays).to.haveCountOf(3);
+        });
+        it(@"returns dates starting tomorrow up to 3 days after tomorrow", ^{
+            expect([differentDays objectsPassingTest:^BOOL(id obj, BOOL *stop) {
+                NSDateComponents *c = (NSDateComponents *)obj;
+                return c.day == referenceDateComps.day + 1;
+            }]).to.haveCountOf(1);
+            expect([differentDays objectsPassingTest:^BOOL(id obj, BOOL *stop) {
+                NSDateComponents *c = (NSDateComponents *)obj;
+                return c.day == referenceDateComps.day + 2;
+            }]).to.haveCountOf(1);
+            expect([differentDays objectsPassingTest:^BOOL(id obj, BOOL *stop) {
+                NSDateComponents *c = (NSDateComponents *)obj;
+                return c.day == referenceDateComps.day + 3;
+            }]).to.haveCountOf(1);
+        });
     });
-    it(@"returns three different days dates", ^{
-        expect(differentDays).to.haveCountOf(3);
-    });
-    it(@"returns dates starting tomorrow up to 3 days after tomorrow", ^{
-        expect([differentDays objectsPassingTest:^BOOL(id obj, BOOL *stop) {
-            NSDateComponents *c = (NSDateComponents *)obj;
-            return c.day = todayComps.day + 1;
-        }]).to.haveCountOf(1);
-        expect([differentDays objectsPassingTest:^BOOL(id obj, BOOL *stop) {
-            NSDateComponents *c = (NSDateComponents *)obj;
-            return c.day = todayComps.day + 2;
-        }]).to.haveCountOf(1);
-        expect([differentDays objectsPassingTest:^BOOL(id obj, BOOL *stop) {
-            NSDateComponents *c = (NSDateComponents *)obj;
-            return c.day = todayComps.day + 3;
-        }]).to.haveCountOf(1);
+    
+    context(@"when days is negative", ^{
+        beforeAll(^{
+            NSArray *randomDates = [GZDatesTests test_datesArrayOfSize:total using:^NSDate *{
+                return [GZDatesTests days:-3 from:referenceDate];
+            }];
+            
+            differentDates = [[NSCountedSet alloc] initWithArray:randomDates];
+            differentDays = [GZDatesTests test_dateComponentsWithDates:randomDates calendar:calendar units:calendarUnits];
+        });
+        
+        it(@"returns different values", ^{
+            expect(differentDates.count).to.beGreaterThan(0.99*total);
+        });
+        it(@"returns three different days dates", ^{
+            expect(differentDays).to.haveCountOf(3);
+        });
+        it(@"returns dates starting 3 days ago up to yesterday", ^{
+            expect([differentDays objectsPassingTest:^BOOL(id obj, BOOL *stop) {
+                NSDateComponents *c = (NSDateComponents *)obj;
+                return c.day == referenceDateComps.day - 1;
+            }]).to.haveCountOf(1);
+            expect([differentDays objectsPassingTest:^BOOL(id obj, BOOL *stop) {
+                NSDateComponents *c = (NSDateComponents *)obj;
+                return c.day == referenceDateComps.day - 2;
+            }]).to.haveCountOf(1);
+            expect([differentDays objectsPassingTest:^BOOL(id obj, BOOL *stop) {
+                NSDateComponents *c = (NSDateComponents *)obj;
+                return c.day == referenceDateComps.day - 3;
     });
 });
 
