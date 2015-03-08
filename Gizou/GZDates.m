@@ -16,11 +16,19 @@
 
 {
     NSDate *today = [self _todayTest] ?: [NSDate date];
++ (NSDate *)birthdayForAgesBetween:(NSUInteger)minAge and:(NSUInteger)maxAge
+{
+    NSDate *today = [NSDate date];
     NSCalendar *calendar = [self _calendar];
     NSDateComponents *fromComponents = [[NSDateComponents alloc] init];
     NSDateComponents *toComponents = [[NSDateComponents alloc] init];
     
+    fromComponents.year = -minAge;
+    toComponents.year = maxAge;
     
+    NSDate *from = [calendar dateByAddingComponents:fromComponents toDate:today options:0];
+    NSDate *to = [calendar dateByAddingComponents:toComponents toDate:today options:0];
+    return [self dateBetween:from and:to];
 }
 
 
