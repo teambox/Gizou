@@ -11,11 +11,53 @@
 
 @implementation GZDates
 
-{
-}
 
+#pragma mark - Defaults
+
+# pragma mark Dates
+
++ (NSDate *)date
 {
     NSDate *today = [self _todayTest] ?: [NSDate date];
+    return [self dateInRange:GZDatesRangeAYear around:today];
+}
+
++ (NSDate *)dateInRange:(GZDatesRange)within
+{
+    NSDate *today = [self _todayTest] ?: [NSDate date];
+    return [self dateInRange:within around:today];
+}
+
++ (NSDate *)daysForward:(NSUInteger)days
+{
+    return [self daysFromNow:days];
+}
+
++ (NSDate *)daysBackward:(NSUInteger)days
+{
+    return [self daysFromNow:-days];
+}
+
++ (NSDate *)daysFromNow:(NSInteger)days
+{
+    NSDate *today = [self _todayTest] ?: [NSDate date];
+    return [self days:days from:today];
+}
+
++ (NSDate *)daysAroundNow:(NSInteger)days
+{
+    NSDate *today = [self _todayTest] ?: [NSDate date];
+    return [self days:days around:today];
+}
+
+
+# pragma mark Birthday
+
++ (NSDate *)birthday
+{
+    [self birthdayForAgesBetween:18 and:65];
+}
+
 + (NSDate *)birthdayForAgesBetween:(NSUInteger)minAge and:(NSUInteger)maxAge
 {
     NSDate *today = [NSDate date];
@@ -32,7 +74,7 @@
 }
 
 
-#pragma mark - Custom reference
+#pragma mark - Custom reference date
 
 + (NSDate *)dateInRange:(GZDatesRange)within around:(NSDate *)referenceDate
 {
@@ -120,7 +162,7 @@
 
 + (NSCalendar *)_calendar
 {
-    return [NSCalendar calendarWithIdentifier:NSGregorianCalendar];
+    return [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 }
 
 @end

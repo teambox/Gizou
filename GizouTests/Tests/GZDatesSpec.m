@@ -230,8 +230,8 @@ describe(@"days:around:", ^{
         it(@"returns different values", ^{
             expect(differentDates.count).to.beGreaterThan(0.99*total);
         });
-        it(@"returns 2x500 + 1 different days dates", ^{
-            expect(differentDays).to.haveCountOf(1001);
+        it(@"returns 1000 different days dates or 1001 max", ^{
+            expect(differentDays.count).to.beInTheRangeOf(1000, 1001);
         });
         it(@"doesn't return dates 501 days before reference day", ^{
             expect([differentDays objectsPassingTest:^BOOL(id obj, BOOL *stop) {

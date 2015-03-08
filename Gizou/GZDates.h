@@ -29,9 +29,12 @@ typedef enum {
 /// @name Using today as the reference date
 ///-----------------------------------------------
 
-+ (NSDate *)date; // in year around current date
++ (NSDate *)date; // in year, around current date
 
 + (NSDate *)dateInRange:(GZDatesRange)within; // around current date
+
++ (NSDate *)daysForward:(NSUInteger)days;
++ (NSDate *)daysBackward:(NSUInteger)days;
 
 + (NSDate *)daysFromNow:(NSInteger)days; // from Now
 
