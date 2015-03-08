@@ -26,7 +26,46 @@
 
 #pragma mark - Custom reference
 
++ (NSDate *)dateInRange:(GZDatesRange)within around:(NSDate *)referenceDate
 {
+    NSCalendar *calendar = [self _calendar];
+    NSUInteger daysRange = 0;
+    switch (within) {
+        case GZDatesRangeAWeek:
+            daysRange = 3;
+            break;
+            
+        case GZDatesRangeAMonth:
+            daysRange = 15;
+            break;
+            
+        case GZDatesRangeAYear:
+            daysRange = 6 * 30;
+            break;
+            
+        case GZDatesRangeFiveYears:
+            daysRange = 30 * 30;
+            break;
+            
+        case GZDatesRangeADecade:
+            daysRange = 5 * 365;
+            break;
+            
+        case GZDatesRangeHalfCentury:
+            daysRange = 25 * 365;
+            break;
+            
+        case GZDatesRangeACentury:
+            daysRange = 50 * 365;
+            break;
+            
+        default:
+            break;
+    }
+    
+    return [self days:daysRange around:referenceDate];
+}
+
 + (NSDate *)days:(NSInteger)days from:(NSDate *)referenceDate
 {
     int s = signbit(days) == 0 ? 1 : -1;
