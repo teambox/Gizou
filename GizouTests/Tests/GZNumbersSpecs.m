@@ -461,8 +461,8 @@ describe(@"+floatBetween:and:", ^{
         
         context(@"when max is any float", ^{
             beforeAll(^{
-                min = 51.53332;
-                max = 51.53332;
+                min = (float)51.53332;
+                max = (float)51.53332;
                 differentFloats = [GZNumbersTests test_numbersSetOfSize:10 using:^NSNumber *{
                     return [GZNumbers floatBetween:min and:max];
                 }];
@@ -480,7 +480,7 @@ describe(@"+floatBetween:and:", ^{
             context(@"when min is 0", ^{
                 beforeAll(^{
                     min = 0;
-                    max = 2.3124;
+                    max = (float)2.3124;
                     differentFloats = [GZNumbersTests test_numbersSetOfSize:total using:^NSNumber *{
                         return [GZNumbers floatBetween:min and:max];
                     }];

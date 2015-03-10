@@ -8,14 +8,45 @@
 
 @interface GZNumbers : NSObject
 
-+ (NSNumber *)randomBOOL;
-+ (NSNumber *)randomInteger;
-+ (NSNumber *)randomNonZeroInteger;
-+ (NSNumber *)randomIntegerLessThan:(int32_t)lessThan;
-+ (NSNumber *)randomIntegerStartingAt:(int32_t)startingAt;
-+ (NSNumber *)randomIntegerBetween:(int32_t)min and:(int32_t)max;
-+ (NSNumber *)randomIndex:(id)enumerable;
-+ (NSNumber *)randomFloatBetween:(float)min and:(float)max;
+/**
+ *  @deprecated This method has been deprecated. Use +yesOrNo instead.
+ */
++ (NSNumber *)randomBOOL DEPRECATED_ATTRIBUTE;
+
+/**
+ *  @deprecated This method has been deprecated. Use +integerN instead.
+ */
++ (NSNumber *)randomInteger DEPRECATED_ATTRIBUTE;
+
+/**
+ *  @deprecated This method has been deprecated. Use +integerNNonZero instead.
+ */
++ (NSNumber *)randomNonZeroInteger DEPRECATED_ATTRIBUTE;
+
+/**
+ *  @deprecated This method has been deprecated. Use +integerNLessOrEqual: instead.
+ */
++ (NSNumber *)randomIntegerLessThan:(int32_t)lessThan DEPRECATED_ATTRIBUTE;
+
+/**
+ *  @deprecated This method has been deprecated. Use +integerBiggerOrEqual: instead.
+ */
++ (NSNumber *)randomIntegerStartingAt:(int32_t)startingAt DEPRECATED_ATTRIBUTE;
+
+/**
+ *  @deprecated This method has been deprecated. Use +integerBetween:and: instead.
+ */
++ (NSNumber *)randomIntegerBetween:(int32_t)min and:(int32_t)max DEPRECATED_ATTRIBUTE;
+
+/**
+ *  @deprecated This method has been deprecated. Use +indexFrom: instead.
+ */
++ (NSNumber *)randomIndex:(id)enumerable DEPRECATED_ATTRIBUTE;
+
+/**
+ *  @deprecated This method has been deprecated. Use +floatBetween:and: instead.
+ */
++ (NSNumber *)randomFloatBetween:(float)min and:(float)max DEPRECATED_ATTRIBUTE;
 
 @end
 

@@ -15,59 +15,42 @@
 
 + (NSNumber *)randomBOOL
 {
-    return @(arc4random_uniform(2));
+    return [self yesOrNo];
 }
 
 + (NSNumber *)randomInteger
 {
-    return @(arc4random_uniform(kINTMAX));
+    return [self integerN];
 }
 
 + (NSNumber *)randomNonZeroInteger
 {
-    return @(arc4random_uniform(kINTMAX) + 1);
+    return [self integerNNonZero];
 }
 
 + (NSNumber *)randomIndex:(id)enumerable
 {
-    u_int32_t idx = 0;
-    if ([enumerable respondsToSelector:@selector(count)]) {
-        idx = arc4random_uniform([enumerable count]);
-    }
-    else if ([enumerable respondsToSelector:@selector(length)]) {
-        idx = arc4random_uniform([enumerable length]);
-    }
-    else {
-        @throw [NSException exceptionWithName:NSInternalInconsistencyException
-                                       reason:@"Tried to use randomIndex on a object with no count or length attribute"
-                                     userInfo:nil];
-    }
-    return @(idx);
+    return [self indexFrom:enumerable];
 }
 
 + (NSNumber *)randomIntegerLessThan:(int32_t)lessThan
 {
-    return @(arc4random_uniform(lessThan));
+    return [self integerNLessOrEqual:lessThan - 1];
 }
 
 + (NSNumber *)randomIntegerStartingAt:(int32_t)startingAt
 {
-    return [self randomIntegerBetween:startingAt and:kINTMAX];
+    return [self integerBiggerOrEqual:startingAt];
 }
 
 + (NSNumber *)randomIntegerBetween:(int32_t)min and:(int32_t)max
 {
-    int32_t rndInRange = min + arc4random_uniform(max - min + 1);
-    return @(rndInRange);
+    return [self integerBetween:min and:max];
 }
 
 + (NSNumber *)randomFloatBetween:(float)min and:(float)max
 {
-    float diff = max - min;
-    unsigned int rInt = arc4random_uniform(kINTMAX) + 1;
-    float r = ((float) rInt / kINTMAX * diff) + min;
-    
-    return @(r);
+    return [self floatBetween:min and:max];
 }
 
 
