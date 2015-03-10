@@ -27,7 +27,7 @@
 
 + (NSNumber *)randomIndex:(id)enumerable
 {
-    NSUInteger idx = 0;
+    u_int32_t idx = 0;
     if ([enumerable respondsToSelector:@selector(count)]) {
         idx = arc4random_uniform([enumerable count]);
     }
