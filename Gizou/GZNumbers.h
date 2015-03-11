@@ -6,6 +6,9 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ *  Creates random numbers and bool objects.
+ */
 @interface GZNumbers : NSObject
 
 /**
@@ -90,7 +93,7 @@
 
 /**
  *  Any natural number from 0 to MAX.
- *  This method just invokes `integerBetween:0 and:MAX`.
+ *  This method invokes `integerBetween:0 and:MAX`.
  *
  *  @param max Maximum desired value that may be generated.
  *
@@ -107,7 +110,7 @@
 
 /**
  *  Any integer number negative, positive or 0.
- *  This method just invokes `integerBetween:-INT32_MAX and:INT32_MAX`.
+ *  This method invokes `integerBetween:-INT32_MAX and:INT32_MAX`.
  *  Limit in range is INT32_MAX on both sides +-.
  *
  *  @return ..,-2,-1,0,1,2,...
@@ -125,7 +128,7 @@
 
 /**
  *  Any integer number from -INT32_MAX to MAX.
- *  This method just invokes `integerBetween:-INT32_MAX and:MAX`.
+ *  This method invokes `integerBetween:-INT32_MAX and:MAX`.
  *
  *  @param max Maximum desired value that may be generated.
  *
@@ -137,7 +140,7 @@
 
 /**
  *  Any integer number from MIN to INT32_MAX.
- *  This method just invokes `integerBetween:MIN and:INT32_MAX`.
+ *  This method invokes `integerBetween:MIN and:INT32_MAX`.
  *
  *  @param min Minimum desired value that may be generated.
  *
@@ -162,7 +165,7 @@
 
 /**
  *  Any negative integer number or 0.
- *  This method just invokes `integerBetween:INT32_MAX and:0`.
+ *  This method invokes `integerBetween:INT32_MAX and:0`.
  *
  *  @return ...,-2,-1,0
  *
@@ -172,7 +175,7 @@
 
 /**
  *  Any negative integer excluding 0.
- *  This method just invokes `integerBetween:INT32_MAX and:-1`.
+ *  This method invokes `integerBetween:INT32_MAX and:-1`.
  *
  *  @return ...,-2,-1
  *

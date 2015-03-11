@@ -70,9 +70,9 @@
     return NO;
 }
 
-+ (BOOL)isInteger:(int32_t)x InRange:(int32_t)a and:(int32_t)b
++ (BOOL)isInteger:(NSInteger)x inRange:(NSInteger)a and:(NSInteger)b
 {
-    NSInteger diff = (NSInteger)b - (NSInteger)a;
+    NSInteger diff = b - a;
     if ((diff >= 0) && (x >= a && x <= b)) {
         return YES;
     }
@@ -119,7 +119,7 @@
 
 + (NSNumber *)integerNLessOrEqual:(u_int32_t)max
 {
-    return [self integerBetween:0 and:max];
+    return [self integerBetween:0 and:(NSInteger)max];
 }
 
 @end
@@ -135,7 +135,7 @@
 + (NSNumber *)integerZNonZero
 {
     int randPos = [self integerNNonZero].intValue;
-    BOOL randBool = [self randomBOOL].boolValue;
+    BOOL randBool = [self yesOrNo].boolValue;
     return randBool ? @(randPos) : @(-randPos);
 }
 
@@ -160,8 +160,8 @@
         max = newMax;
     }
 
-    if (max > 0 && (min + max < min) ||
-        max < 0 && (min + max > min)) {
+    if ((max > 0 && (min + max < min)) ||
+        (max < 0 && (min + max > min))) {
         // Overflown
         NSLog(@"[! GZNumbers] WARNING. Range specified in integerZBetween:and: may have overflown int32 values");
     }
@@ -195,12 +195,12 @@
     if (!m && !f) {
         return random;
     }
-    if (m && ![self isInteger:m.integerValue InRange:min and:max]) {
+    if (m && ![self isInteger:m.integerValue inRange:min and:max]) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                        reason:@"Cannot set 'many' value out of range."
                                      userInfo:nil];
     }
-    if (f && ![self isInteger:f.integerValue InRange:min and:max]) {
+    if (f && ![self isInteger:f.integerValue inRange:min and:max]) {
         @throw [NSException exceptionWithName:NSInternalInconsistencyException
                                        reason:@"Cannot set 'few' value out of range."
                                      userInfo:nil];
