@@ -85,13 +85,13 @@
          location = "group:Gizou.h">
       </FileRef>
       <FileRef
+         location = "group:GZDataManager.h">
+      </FileRef>
+      <FileRef
+         location = "group:GZDataManager.m">
+      </FileRef>
+      <FileRef
          location = "group:GizouOptional.h">
-      </FileRef>
-      <FileRef
-         location = "group:/Users/john/Code/Gizou/Classes/GZDataManager.h">
-      </FileRef>
-      <FileRef
-         location = "group:/Users/john/Code/Gizou/Classes/GZDataManager.m">
       </FileRef>
       <FileRef
          location = "group:GZNames.h">
@@ -122,6 +122,18 @@
       </FileRef>
       <FileRef
          location = "group:GZPhoneNumbers.m">
+      </FileRef>
+      <FileRef
+         location = "group:GZNumbers.h">
+      </FileRef>
+      <FileRef
+         location = "group:GZNumbers.m">
+      </FileRef>
+      <FileRef
+         location = "group:GZColors.h">
+      </FileRef>
+      <FileRef
+         location = "group:GZColors.m">
       </FileRef>
    </Group>
    <FileRef
