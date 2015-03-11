@@ -259,8 +259,8 @@ describe(@"birthdayForAgesBetween:and", ^{
     __block NSCountedSet *differentYears;
     beforeAll(^{
         total = 1000;
-        minAge = 18;
-        maxAge = 65;
+        minAge = 3;
+        maxAge = 6;
         NSCalendar *calendar = [GZDatesTests _calendar];
         calendarUnits = (NSYearCalendarUnit);
         referenceDate = [GZDatesTests _todayTest];
@@ -276,19 +276,19 @@ describe(@"birthdayForAgesBetween:and", ^{
     it(@"returns different values", ^{
         expect(differentDates.count).to.beGreaterThan(0.99*total);
     });
-    it(@"returns 83 or 84 different years dates", ^{
-        expect(differentYears.count).to.beInTheRangeOf(83, 84);
+    it(@"returns 4 or 5 different years dates", ^{
+        expect(differentYears.count).to.beInTheRangeOf(4, 5);
     });
-    it(@"doesn't return dates older than today - 18 years", ^{
+    it(@"birthday cannot represent olther than 6 years", ^{
         expect([differentYears objectsPassingTest:^BOOL(id obj, BOOL *stop) {
             NSDateComponents *c = (NSDateComponents *)obj;
-            return c.year < referenceDateComps.year - minAge;
+            return c.year < referenceDateComps.year - maxAge;
         }]).to.haveCountOf(0);
     });
-    it(@"doesn't return dates further than today + 65 years", ^{
+    it(@"birthday cannot represent younger than 3 years", ^{
         expect([differentYears objectsPassingTest:^BOOL(id obj, BOOL *stop) {
             NSDateComponents *c = (NSDateComponents *)obj;
-            return c.year > referenceDateComps.year + maxAge;
+            return c.year > referenceDateComps.year - minAge;
         }]).to.haveCountOf(0);
     });
 });

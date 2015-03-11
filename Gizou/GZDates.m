@@ -19,7 +19,7 @@
 + (NSDate *)date
 {
     NSDate *today = [self _todayTest] ?: [NSDate date];
-    return [self dateInRange:GZDatesRangeAYear around:today];
+    return [self dateInRange:GZDatesRangeAWeek around:today];
 }
 
 + (NSDate *)dateInRange:(GZDatesRange)within
@@ -55,7 +55,7 @@
 
 + (NSDate *)birthday
 {
-    [self birthdayForAgesBetween:18 and:65];
+    return [self birthdayForAgesBetween:18 and:65];
 }
 
 + (NSDate *)birthdayForAgesBetween:(NSUInteger)minAge and:(NSUInteger)maxAge
@@ -65,8 +65,8 @@
     NSDateComponents *fromComponents = [[NSDateComponents alloc] init];
     NSDateComponents *toComponents = [[NSDateComponents alloc] init];
     
-    fromComponents.year = -minAge;
-    toComponents.year = maxAge;
+    fromComponents.year = -maxAge;
+    toComponents.year = -minAge;
     
     NSDate *from = [calendar dateByAddingComponents:fromComponents toDate:today options:0];
     NSDate *to = [calendar dateByAddingComponents:toComponents toDate:today options:0];
@@ -78,7 +78,6 @@
 
 + (NSDate *)dateInRange:(GZDatesRange)within around:(NSDate *)referenceDate
 {
-    NSCalendar *calendar = [self _calendar];
     NSUInteger daysRange = 0;
     switch (within) {
         case GZDatesRangeAWeek:
@@ -118,7 +117,7 @@
 
 + (NSDate *)days:(NSInteger)days from:(NSDate *)referenceDate
 {
-    int s = signbit(days) == 0 ? 1 : -1;
+    NSInteger s = signbit(days) == 0 ? 1 : -1;
     NSCalendar *calendar = [self _calendar];
     NSDateComponents *fromComponents = [[NSDateComponents alloc] init];
     NSDateComponents *toComponents = [[NSDateComponents alloc] init];
