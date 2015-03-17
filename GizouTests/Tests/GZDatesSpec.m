@@ -404,7 +404,7 @@ describe(@"dateInRange:around:", ^{
                 NSDate *d = (NSDate *)obj;
                 return d.timeIntervalSince1970 > 1451602799.000; // 31/12/2015 23:59:59
             }];
-            expect(nextYearDates.count).to.beLessThan(0.01*total);
+            expect(nextYearDates.count).to.beLessThan(0.05*total);
         });
     });
     
@@ -498,7 +498,7 @@ describe(@"dateInRange:around:", ^{
             expect(differentDates.count).to.beGreaterThan(0.99*total);
         });
         it(@"returns 51 different years dates max", ^{
-            // +1 because few dates may hit past the 25 years above referenceDate (1st days in the 6th year).
+            // +1 because few dates may hit past the 25 years above referenceDate (1st days in the 26th year).
             expect(differentYears.count).to.beInTheRangeOf(50, 51);
         });
         it(@"returns dates +-25 years around ref date", ^{
@@ -527,7 +527,7 @@ describe(@"dateInRange:around:", ^{
             expect(differentDates.count).to.beGreaterThan(0.99*total);
         });
         it(@"returns 101 different years dates max", ^{
-            // +1 because few dates may hit past the 50 years above referenceDate (1st days in the 6th year).
+            // +1 because few dates may hit past the 50 years above referenceDate (1st days in the 51th year).
             expect(differentYears.count).to.beInTheRangeOf(100, 101);
         });
         it(@"returns dates +-50 years around ref date", ^{
