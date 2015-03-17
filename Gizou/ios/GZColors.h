@@ -7,5 +7,12 @@
 #import <UIKit/UIKit.h>
 
 @interface GZColors : NSObject
-+ (UIColor *)randomColor;
+
+/**
+ *  Generates random color.
+ *
+ *  @return any color.
+ */
++ (UIColor *)color;
+
 @end
