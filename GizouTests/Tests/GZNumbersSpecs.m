@@ -54,7 +54,7 @@
 + (NSNumber *)test_integerZNonZero
 {
     int randPos = [self test_integerNNonZero].intValue;
-    BOOL randBool = [self randomBOOL].boolValue;
+    BOOL randBool = [self yesOrNo].boolValue;
     return randBool ? @(randPos) : @(-randPos);
 }
 
@@ -585,7 +585,7 @@ describe(@"+indexFrom:", ^{
         });
         
         it(@"should throw exception", ^{
-            expect(^{[GZNumbers randomIndex:obj];}).to.raise(NSInternalInconsistencyException);
+            expect(^{[GZNumbers indexFrom:obj];}).to.raise(NSInternalInconsistencyException);
         });
     });
     
