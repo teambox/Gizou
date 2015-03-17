@@ -4,7 +4,7 @@
 //  Created by Maria Bernis on 25/02/15.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface GZColors : NSObject
 + (UIColor *)randomColor;
