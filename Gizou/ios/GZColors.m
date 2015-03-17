@@ -2,7 +2,7 @@
 
 @implementation GZColors
 
-+ (UIColor *)randomColor
++ (UIColor *)color
 {
     float r = arc4random() % 255; 
     float g = arc4random() % 255;
