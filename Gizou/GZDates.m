@@ -62,8 +62,8 @@
 {
     NSDate *today = [NSDate date];
     NSCalendar *calendar = [self _calendar];
-    NSDateComponents *fromComponents = [[NSDateComponents alloc] init];
-    NSDateComponents *toComponents = [[NSDateComponents alloc] init];
+    NSDateComponents *fromComponents = [NSDateComponents new];
+    NSDateComponents *toComponents = [NSDateComponents new];
     
     fromComponents.year = -maxAge;
     toComponents.year = -minAge;
@@ -119,8 +119,8 @@
 {
     NSInteger s = signbit(days) == 0 ? 1 : -1;
     NSCalendar *calendar = [self _calendar];
-    NSDateComponents *fromComponents = [[NSDateComponents alloc] init];
-    NSDateComponents *toComponents = [[NSDateComponents alloc] init];
+    NSDateComponents *fromComponents = [NSDateComponents new];
+    NSDateComponents *toComponents = [NSDateComponents new];
     
     fromComponents.day = s;
     toComponents.day = s*(abs(days) - 1);
@@ -133,8 +133,8 @@
 + (NSDate *)days:(NSUInteger)days around:(NSDate *)referenceDate
 {
     NSCalendar *calendar = [self _calendar];
-    NSDateComponents *fromComponents = [[NSDateComponents alloc] init];
-    NSDateComponents *toComponents = [[NSDateComponents alloc] init];
+    NSDateComponents *fromComponents = [NSDateComponents new];
+    NSDateComponents *toComponents = [NSDateComponents new];
     
     fromComponents.day = -days;
     toComponents.day = days;
